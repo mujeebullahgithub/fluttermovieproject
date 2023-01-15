@@ -235,8 +235,33 @@ class BookingScreenTwo extends StatelessWidget {
   }
 }
 
-class TheatreView extends StatelessWidget {
+class TheatreView extends StatefulWidget {
   const TheatreView({Key? key}) : super(key: key);
+
+  @override
+  State<TheatreView> createState() => _TheatreViewState();
+}
+
+class _TheatreViewState extends State<TheatreView> {
+  double _scale = 1.0;
+
+  void _zoomIn() {
+    setState(() {
+      if (_scale >= 1.6) {
+        return;
+      }
+      _scale += 0.2;
+    });
+  }
+
+  void _zoomOut() {
+    setState(() {
+      if (_scale <= 0.8) {
+        return;
+      }
+      _scale -= 0.2;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -253,29 +278,35 @@ class TheatreView extends StatelessWidget {
             color: overviewTextColor,
           ),
         ),
-        Container(
-          width: size.width,
-          margin: EdgeInsets.all(defaultPadding),
-          child: Column(
-            children: List.generate(
-              ArmChairsModel.listChairs.length,
-              (i) => TheatreSeatRows(
-                numSeats: ArmChairsModel.listChairs[i].seats,
-                rowNo: i,
+        SizedBox(height: 20),
+        Transform.scale(
+          scale: _scale,
+          child: Container(
+            //width: size.width,
+            margin: EdgeInsets.all(defaultPadding),
+            child: Column(
+              children: List.generate(
+                ArmChairsModel.listChairs.length,
+                (i) => TheatreSeatRows(
+                  numSeats: ArmChairsModel.listChairs[i].seats,
+                  rowNo: i,
+                ),
               ),
             ),
           ),
         ),
         Spacer(),
-        Container(
-          padding: EdgeInsets.symmetric(
-              vertical: defaultPadding / 2, horizontal: defaultPadding),
-          child: Expanded(
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.symmetric(
+                horizontal: defaultPadding, vertical: defaultPadding / 2),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    _zoomIn();
+                  },
                   child: Container(
                     padding: EdgeInsets.all(defaultPadding / 4),
                     decoration: BoxDecoration(
@@ -290,7 +321,9 @@ class TheatreView extends StatelessWidget {
                 ),
                 SizedBox(width: defaultPadding / 3),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    _zoomOut();
+                  },
                   child: Container(
                     padding: EdgeInsets.all(defaultPadding / 4),
                     decoration: BoxDecoration(

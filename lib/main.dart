@@ -28,16 +28,16 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: bgColor,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
       ),
-      // initialRoute: '/dashboard',
-      // routes: {
-      //   '/dashboard': (context) => DashboardScreen(),
-      //   '/searchable': (context) => SearchProvider(),
-      //   '/moviedetail': (context) => MovieDetailScreen(),
-      //   '/movietrailer': (context) => MovieVideoScreen(),
-      //   '/booking': (context) => BookingScreenOne(),
-      // },
-      // home: const DashboardScreen(),
-      home: BookingScreenTwo(),
+      initialRoute: '/dashboard',
+      routes: {
+        '/dashboard': (context) => DashboardScreen(),
+        '/searchable': (context) => SearchProvider(),
+        '/moviedetail': (context) => MovieDetailScreen(),
+        '/movietrailer': (context) => MovieVideoScreen(),
+        '/booking': (context) => BookingScreenOne(),
+        '/selectseats': (context) => BookingScreenTwo(),
+      },
+      home: const DashboardScreen(),
     );
   }
 }

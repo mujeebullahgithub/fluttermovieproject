@@ -213,22 +213,27 @@ class _BookingScreenOneState extends State<BookingScreenOne> {
               ),
             ),
             Spacer(),
-            Container(
-              margin: EdgeInsets.only(bottom: defaultPadding),
-              height: 60,
-              width: MediaQuery.of(context).size.width * 0.90,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12), color: blueColor),
-              child: Column(
-                children: [
-                  const SizedBox(height: 15),
-                  Text(
-                    "Select Seats",
-                    style:
-                        GoogleFonts.poppins(fontSize: 20, color: Colors.white),
-                  ),
-                  const SizedBox(width: 10),
-                ],
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, '/selectseats');
+              },
+              child: Container(
+                margin: EdgeInsets.only(bottom: defaultPadding),
+                height: 60,
+                width: MediaQuery.of(context).size.width * 0.90,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12), color: blueColor),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 15),
+                    Text(
+                      "Select Seats",
+                      style: GoogleFonts.poppins(
+                          fontSize: 20, color: Colors.white),
+                    ),
+                    const SizedBox(width: 10),
+                  ],
+                ),
               ),
             )
           ],
